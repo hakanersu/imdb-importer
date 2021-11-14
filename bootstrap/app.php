@@ -46,5 +46,9 @@ $app->singleton(
 | from the actual running of the application and sending responses.
 |
 */
+if (Phar::running()) {
+    $builds = dirname(Phar::running(false));
+    $app->useStoragePath($builds  . DIRECTORY_SEPARATOR . 'storage');
+}
 
 return $app;

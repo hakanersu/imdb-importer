@@ -8,7 +8,8 @@
         "database"
     ],
     "files": [
-        "composer.json"
+        "composer.json",
+        ".env"
     ],
     "exclude-composer-files": false,
     "exclude-dev-files": false,

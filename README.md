@@ -14,7 +14,7 @@ We have an initial database structure (you can find in database/migrations folde
 
 ## Importing
 
-Basically you can use `php imdb-importer import:database` command to import all datasets, or you can selectively import datasets;
+First of all copy `.env.example` and to `.env` and change database credentials after that basically you can use `php imdb-importer import:database` command to import all datasets, or you can selectively import datasets;
 
 ```bash
 php imdb-importer import:database --only=title,episodes
