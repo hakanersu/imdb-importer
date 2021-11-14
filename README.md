@@ -4,13 +4,13 @@
 
 # Imdb Importer
 
-This project import imdb datasets to a postgresql database. After import process indexed and optimized database can be used.
+This project import imdb datasets to a postgresql database. After import process indexed and optimized database can [be used](/docs/schema.md).
 
 Importer has own downloader and downloads all datasets and uses this files. Most of the import process done by built in postgresql import function called [COPY](https://www.postgresql.org/docs/9.2/sql-copy.html) which is fairly fast process. Most time-consuming steps are indexing and optimizing tables.
 
 ## Database structure
 
-We have an initial database structure (you can find in database/migrations folder) to import all data to postgresql properly. After importing process tables altered and indexed properly.
+We have an initial database structure (you can find in database/migrations folder) to import all data to postgresql properly. After importing process tables altered and indexed properly which you can find [here](/docs/schema.md).
 
 ## Importing
 
