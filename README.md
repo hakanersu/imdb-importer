@@ -51,6 +51,6 @@ UPDATE titles SET tsv_title_text = setweight(to_tsvector(coalesce(primary_title,
 
 ## Screenshots
 
-
+![plot](./docs/screenshot.png)
 
 If you interested I'm using this importer in opensource [watched movie tracker](https://github.com/hakanersu/iwatched).
