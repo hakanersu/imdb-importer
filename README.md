@@ -1,36 +1,49 @@
 <p align="center">
-    <img title="Laravel Zero" height="100" src="https://raw.githubusercontent.com/laravel-zero/docs/master/images/logo/laravel-zero-readme.png" />
+    <img title="Imdb importer" src="https://banners.beyondco.de/Imdb%20Importer.png?theme=light&packageManager=composer+require&packageName=xuma%2Fimdb-importer&pattern=architect&style=style_2&description=Download+and+import+imdb+database&md=1&showWatermark=0&fontSize=100px&images=code" />
 </p>
 
-<p align="center">
-  <a href="https://github.com/laravel-zero/framework/actions"><img src="https://img.shields.io/github/workflow/status/laravel-zero/framework/Tests.svg" alt="Build Status"></img></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/dt/laravel-zero/framework.svg" alt="Total Downloads"></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/v/laravel-zero/framework.svg?label=stable" alt="Latest Stable Version"></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/l/laravel-zero/framework.svg" alt="License"></a>
-</p>
+# Imdb Importer
 
-<h4> <center>This is a <bold>community project</bold> and not an official Laravel one </center></h4>
+This project import imdb datasets to a postgresql database. After import process indexed and optimized database can be used.
 
-Laravel Zero was created by, and is maintained by [Nuno Maduro](https://github.com/nunomaduro), and is a micro-framework that provides an elegant starting point for your console application. It is an **unofficial** and customized version of Laravel optimized for building command-line applications.
+Downloader has own downloader and downloads all datasets and uses this files. Most of the import process done by built in postgresql import function called [COPY](https://www.postgresql.org/docs/9.2/sql-copy.html) which is fairly fast process. Most time-consuming steps are indexing and optimizing tables.
 
-- Built on top of the [Laravel](https://laravel.com) components.
-- Optional installation of Laravel [Eloquent](https://laravel-zero.com/docs/database/), Laravel [Logging](https://laravel-zero.com/docs/logging/) and many others.
-- Supports interactive [menus](https://laravel-zero.com/docs/build-interactive-menus/) and [desktop notifications](https://laravel-zero.com/docs/send-desktop-notifications/) on Linux, Windows & MacOS.
-- Ships with a [Scheduler](https://laravel-zero.com/docs/task-scheduling/) and  a [Standalone Compiler](https://laravel-zero.com/docs/build-a-standalone-application/).
-- Integration with [Collision](https://github.com/nunomaduro/collision) - Beautiful error reporting
+## Database structure
 
-------
+We have an initial database structure (you can find in database/migrations folder) to import all data to postgresql properly. After importing process tables altered and indexed properly.
 
-## Documentation
+## Importing
 
-For full documentation, visit [laravel-zero.com](https://laravel-zero.com/).
+Basically you can use `importer import:database` command to import all datasets, or you can selectively import datasets;
 
-## Support the development
-**Do you like this project? Support it by donating**
+```bash
+importer import:database --only=title,episodes
+```
 
-- PayPal: [Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66BYDWAT92N6L)
-- Patreon: [Donate](https://www.patreon.com/nunomaduro)
+Or you can skip particular dataset;
 
-## License
+```bash
+importer import:database --skip=principal
+```
 
-Laravel Zero is an open-source software licensed under the MIT license.
+Available dataset aliases are `title, episode, principal, name, crew, aka, rating`
+
+Import command drops all tables and starts over when started.
+
+## Searching
+
+Basic postgresql search will be slow, you can add full text search to titles datatable with `importer import:fulltext`. This will run below queries to add fairly fast search feature.
+
+```sql
+ALTER TABLE titles ADD COLUMN tsv_title_text tsvector;
+```
+
+
+```sql
+CREATE INDEX tsv_title_text_idx ON titles USING gin(tsv_title_text);
+```
+
+```sql
+UPDATE titles SET tsv_title_text = setweight(to_tsvector(coalesce(primary_title,'')), 'A') || setweight(to_tsvector(coalesce(original_title,'')), 'B');
+```
+
