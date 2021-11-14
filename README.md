@@ -14,16 +14,16 @@ We have an initial database structure (you can find in database/migrations folde
 
 ## Importing
 
-Basically you can use `importer import:database` command to import all datasets, or you can selectively import datasets;
+Basically you can use `php imdb-importer import:database` command to import all datasets, or you can selectively import datasets;
 
 ```bash
-importer import:database --only=title,episodes
+php imdb-importer import:database --only=title,episodes
 ```
 
 Or you can skip particular dataset;
 
 ```bash
-importer import:database --skip=principal
+php imdb-importer import:database --skip=principal
 ```
 
 Available dataset aliases are `title, episode, principal, name, crew, aka, rating`
@@ -34,7 +34,7 @@ As I mentioned before indexing and altering tables can be take time. Over all do
 
 ## Searching
 
-Basic postgresql search will be slow, you can add full text search to titles datatable with `importer import:fulltext`. This will run below queries to add fairly fast search feature.
+Basic postgresql search will be slow, you can add full text search to titles datatable with `php imdb-importer import:fulltext`. This will run below queries to add fairly fast search feature.
 
 ```sql
 ALTER TABLE titles ADD COLUMN tsv_title_text tsvector;
