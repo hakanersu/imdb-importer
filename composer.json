@@ -1,0 +1,49 @@
+{
+    "name": "xuma/imdb-importer",
+    "description": "Imdb dataset to postgresql database.",
+    "keywords": ["imdb", "importer", "postgresql", "console", "cli"],
+    "homepage": "https://github.com/hakanersu/imdb-importer",
+    "type": "project",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/laravel-zero/laravel-zero/issues",
+        "source": "https://github.com/laravel-zero/laravel-zero"
+    },
+    "authors": [
+        {
+            "name": "Hakan ERSU",
+            "email": "hakanersu@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "doctrine/dbal": "^3.1",
+        "gabrielelana/byte-units": "^0.5.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "illuminate/database": "^8.40"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.9.1",
+        "mockery/mockery": "^1.4.3",
+        "pestphp/pest": "^1.3",
+        "laravel-zero/framework": "^8.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "bin": ["imdb-importer"]
+}

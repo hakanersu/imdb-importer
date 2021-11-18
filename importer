@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+docker run --rm --network=host -v ${PWD}:/var/www/html \
+    imdb_importer:latest php /var/www/html/builds/imdb-importer $1 --path=${PWD}/builds/storage;
+
