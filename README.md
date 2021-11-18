@@ -1,7 +1,3 @@
-<p align="center">
-    <img title="Imdb importer" src="https://banners.beyondco.de/Imdb%20Importer.png?theme=light&packageManager=composer+require&packageName=xuma%2Fimdb-importer&pattern=architect&style=style_2&description=Download+and+import+imdb+database&md=1&showWatermark=0&fontSize=100px&images=code" />
-</p>
-
 # Imdb Importer
 
 This project import imdb datasets to a postgresql database. After import process indexed and optimized database can [be used](/docs/schema.md).
