@@ -6,7 +6,7 @@ Importer has own downloader and downloads all datasets and uses this files. Most
 
 ## Database structure
 
-We have an initial database structure (you can find in database/migrations folder) to import all data to postgresql properly. After importing process tables altered and indexed properly which you can find [here](/docs/schema.md).
+We have an initial database structure (you can find in database/migrations folder) to import all data to postgresql properly. After importing process tables altered and indexed properly which you can find final schema [here](/docs/schema.md).
 
 ## Installing & Importing
 
