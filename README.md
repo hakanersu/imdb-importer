@@ -50,7 +50,7 @@ bash importer import:database
 
 ## Searching
 
-Basic postgresql search will be slow, you can add full text search to titles datatable with `php imdb-importer import:fulltext`. This will run below queries to add fairly fast search feature.
+Basic postgresql search will be slow, you can add full text search to titles datatable with `php imdb-importer import:search`. This will run below queries to add fairly fast search feature.
 
 ```sql
 ALTER TABLE titles ADD COLUMN tsv_title_text tsvector;
